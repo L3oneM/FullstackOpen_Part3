@@ -36,7 +36,7 @@ let persons = [
   }
 ]
 
-app.get('/api/persons', (req, res) => {
+app.get('/persons', (req, res) => {
   res.json(persons)
 })
 
@@ -46,7 +46,7 @@ app.get('/info', (req, res) => {
   res.send(message)
 })
 
-app.get('/api/persons/:id', (req, res) => {
+app.get('/persons/:id', (req, res) => {
   const id = Number(req.params.id)
   const person = persons.find(person => person.id === id)
 
@@ -58,7 +58,7 @@ app.get('/api/persons/:id', (req, res) => {
   
 })
 
-app.delete('/api/persons/:id', (req, res) => {
+app.delete('/persons/:id', (req, res) => {
   const id = Number(req.params.id)
   persons = persons.filter(person => person.id !== id)
 
@@ -71,7 +71,7 @@ const generateId = () => {
 
 }
 
-app.post('/api/persons', (req, res) => {
+app.post('/persons', (req, res) => {
   const body = req.body
 
   if (!body.name || !body.number) {
