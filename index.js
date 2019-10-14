@@ -24,7 +24,7 @@ app.get('/api/persons', (req, res) => {
   })
 })
 
-app.get('/info', (req, res) => {
+app.get('/info', (req, res, next) => {
   Person.find({}).then(people => {
     res.send(
       `<p>Phonebook has info for ${people.length} people</p>
@@ -40,7 +40,7 @@ app.get('/api/persons/:id', (req, res, next) => {
       if (person) {
         res.json(person.toJSON())
       } else {
-        response.status(404).end()
+        res.status(404).end()
       }
     })
     .catch(error => next(error))
@@ -48,7 +48,7 @@ app.get('/api/persons/:id', (req, res, next) => {
 
 app.delete('/api/persons/:id', (req, res, next) => {
   Person.findByIdAndRemove(req.params.id)
-    .then(result => {
+    .then(() => {
       res.status(204).end()
     })
     .catch(error => next(error))
@@ -67,8 +67,8 @@ app.post('/api/persons', (req, res, next) => {
     .then(savedAndFormattedPerson => {
       res.json(savedAndFormattedPerson)
     })
-  .catch(error => next(error))
-}) 
+    .catch(error => next(error))
+})
 
 app.put('/api/persons/:id', (req, res, next) => {
   const body = req.body

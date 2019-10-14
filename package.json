@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "watch": "nodemon index.js",
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ui": "rm -rf build && cd ../FullstackOpen/Part_2/the_phonebook && npm run build --prod && cp -r build ../../../Part_3",
     "deploy": "git push heroku master",
@@ -23,6 +24,7 @@
     "morgan": "^1.9.1"
   },
   "devDependencies": {
+    "eslint": "^6.5.1",
     "nodemon": "^1.19.3"
   }
 }
